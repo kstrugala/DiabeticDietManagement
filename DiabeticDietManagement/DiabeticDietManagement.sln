@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiabeticDietManagement.Core", "DiabeticDietManagement.Core\DiabeticDietManagement.Core.csproj", "{1D9C2252-3735-4F69-AB3E-F86D26F1939A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiabeticDietManagement.Infrastructure", "DiabeticDietManagement.Infrastructure\DiabeticDietManagement.Infrastructure.csproj", "{34D16CFB-D10D-4256-A36F-D83B5C35AB95}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1D9C2252-3735-4F69-AB3E-F86D26F1939A} = {1D9C2252-3735-4F69-AB3E-F86D26F1939A}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiabeticDietManagement.Api", "DiabeticDietManagement.Api\DiabeticDietManagement.Api.csproj", "{406475FA-809C-4024-A3C0-9A5E1C33F7FD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{34D16CFB-D10D-4256-A36F-D83B5C35AB95} = {34D16CFB-D10D-4256-A36F-D83B5C35AB95}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BD21B998-C0EC-422E-939C-95BED10BEC79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D9C2252-3735-4F69-AB3E-F86D26F1939A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D9C2252-3735-4F69-AB3E-F86D26F1939A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D9C2252-3735-4F69-AB3E-F86D26F1939A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D9C2252-3735-4F69-AB3E-F86D26F1939A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34D16CFB-D10D-4256-A36F-D83B5C35AB95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34D16CFB-D10D-4256-A36F-D83B5C35AB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34D16CFB-D10D-4256-A36F-D83B5C35AB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34D16CFB-D10D-4256-A36F-D83B5C35AB95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{406475FA-809C-4024-A3C0-9A5E1C33F7FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{406475FA-809C-4024-A3C0-9A5E1C33F7FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{406475FA-809C-4024-A3C0-9A5E1C33F7FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{406475FA-809C-4024-A3C0-9A5E1C33F7FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1D9C2252-3735-4F69-AB3E-F86D26F1939A} = {BD21B998-C0EC-422E-939C-95BED10BEC79}
+		{34D16CFB-D10D-4256-A36F-D83B5C35AB95} = {BD21B998-C0EC-422E-939C-95BED10BEC79}
+		{406475FA-809C-4024-A3C0-9A5E1C33F7FD} = {BD21B998-C0EC-422E-939C-95BED10BEC79}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D7ADA47-C69F-4F9A-8AA2-CF81CFE9EC37}
+	EndGlobalSection
+EndGlobal

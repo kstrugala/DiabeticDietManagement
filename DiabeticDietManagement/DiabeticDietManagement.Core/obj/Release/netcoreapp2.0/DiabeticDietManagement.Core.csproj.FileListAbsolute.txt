@@ -1,0 +1,9 @@
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\bin\Release\netcoreapp2.0\DiabeticDietManagement.Core.deps.json
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\bin\Release\netcoreapp2.0\DiabeticDietManagement.Core.dll
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\bin\Release\netcoreapp2.0\DiabeticDietManagement.Core.pdb
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\obj\Release\netcoreapp2.0\DiabeticDietManagement.Core.csprojAssemblyReference.cache
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\obj\Release\netcoreapp2.0\DiabeticDietManagement.Core.csproj.CoreCompileInputs.cache
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\obj\Release\netcoreapp2.0\DiabeticDietManagement.Core.AssemblyInfoInputs.cache
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\obj\Release\netcoreapp2.0\DiabeticDietManagement.Core.AssemblyInfo.cs
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\obj\Release\netcoreapp2.0\DiabeticDietManagement.Core.dll
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\obj\Release\netcoreapp2.0\DiabeticDietManagement.Core.pdb

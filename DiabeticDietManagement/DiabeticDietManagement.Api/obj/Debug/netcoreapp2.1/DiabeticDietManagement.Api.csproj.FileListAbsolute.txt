@@ -1,0 +1,16 @@
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\bin\Debug\netcoreapp2.1\DiabeticDietManagement.Api.deps.json
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\bin\Debug\netcoreapp2.1\DiabeticDietManagement.Api.runtimeconfig.json
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\bin\Debug\netcoreapp2.1\DiabeticDietManagement.Api.runtimeconfig.dev.json
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\bin\Debug\netcoreapp2.1\DiabeticDietManagement.Api.dll
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\bin\Debug\netcoreapp2.1\DiabeticDietManagement.Api.pdb
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\bin\Debug\netcoreapp2.1\DiabeticDietManagement.Core.dll
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\bin\Debug\netcoreapp2.1\DiabeticDietManagement.Infrastructure.dll
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\bin\Debug\netcoreapp2.1\DiabeticDietManagement.Infrastructure.pdb
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\bin\Debug\netcoreapp2.1\DiabeticDietManagement.Core.pdb
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\obj\Debug\netcoreapp2.1\DiabeticDietManagement.Api.csprojAssemblyReference.cache
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\obj\Debug\netcoreapp2.1\DiabeticDietManagement.Api.csproj.CoreCompileInputs.cache
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\obj\Debug\netcoreapp2.1\DiabeticDietManagement.Api.AssemblyInfoInputs.cache
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\obj\Debug\netcoreapp2.1\DiabeticDietManagement.Api.AssemblyInfo.cs
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\obj\Debug\netcoreapp2.1\DiabeticDietManagement.Api.csproj.CopyComplete
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\obj\Debug\netcoreapp2.1\DiabeticDietManagement.Api.dll
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Api\obj\Debug\netcoreapp2.1\DiabeticDietManagement.Api.pdb

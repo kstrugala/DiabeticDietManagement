@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using DiabeticDietManagement.Api.Framework;
 using DiabeticDietManagement.Infrastructure.EF;
 using DiabeticDietManagement.Infrastructure.IoC;
 using DiabeticDietManagement.Infrastructure.Services;
@@ -90,7 +91,7 @@ namespace DiabeticDietManagement.Api
 
             app.UseAuthentication();
 
-            app.UseExceptionHandler();
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseMvc();
 
             applicationLifetime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());

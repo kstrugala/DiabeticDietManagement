@@ -2,6 +2,7 @@
 using DiabeticDietManagement.Core.Domain;
 using DiabeticDietManagement.Core.Repositories;
 using DiabeticDietManagement.Infrastructure.DTO;
+using DiabeticDietManagement.Infrastructure.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -41,7 +42,7 @@ namespace DiabeticDietManagement.Infrastructure.Services
             var user = await _userRepository.GetAsync(email);
             if (user == null)
             {
-                throw new Exception("Invalid credentials");
+                throw new ServiceException(ErrorCodes.InvalidCredentials, "Invalid credentials");
             }
 
             var hash = _encrypter.GetHash(password, user.Salt);
@@ -49,7 +50,7 @@ namespace DiabeticDietManagement.Infrastructure.Services
             {
                 return;
             }
-            throw new Exception("Invalid credentials");
+            throw new ServiceException(ErrorCodes.InvalidCredentials, "Invalid credentials");
         }
 
         public async Task RegisterAsync(Guid userId, string email,
@@ -58,7 +59,7 @@ namespace DiabeticDietManagement.Infrastructure.Services
             var user = await _userRepository.GetAsync(email);
             if (user != null)
             {
-                throw new Exception($"User with email: '{email}' already exists.");
+                throw new ServiceException(ErrorCodes.EmailInUse, $"User with email: '{email}' already exists.");
             }
 
             var salt = _encrypter.GetSalt(password);

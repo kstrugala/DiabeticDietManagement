@@ -12,10 +12,10 @@ namespace DiabeticDietManagement.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Email = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    Salt = table.Column<string>(nullable: true),
-                    Username = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(maxLength: 200, nullable: false),
+                    Password = table.Column<string>(maxLength: 200, nullable: false),
+                    Salt = table.Column<string>(maxLength: 200, nullable: false),
+                    Username = table.Column<string>(maxLength: 200, nullable: false),
                     Role = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdatedAt = table.Column<DateTime>(nullable: false)

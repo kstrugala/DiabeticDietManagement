@@ -27,6 +27,20 @@ namespace DiabeticDietManagement.Infrastructure.EF
         {
             var userBuilder = modelBuilder.Entity<User>();
             userBuilder.HasKey(x => x.Id);
+            userBuilder.Property(x => x.Email)
+                       .IsRequired()
+                       .HasMaxLength(200);
+            userBuilder.Property(x => x.Password)
+                        .IsRequired()
+                        .HasMaxLength(200);
+            userBuilder.Property(x => x.Salt)
+                       .IsRequired().HasMaxLength(200);
+            userBuilder.Property(x => x.Username)
+                       .IsRequired()
+                       .HasMaxLength(200);
+            userBuilder.Property(x => x.Role)
+                       .IsRequired()
+                       .HasMaxLength(100);
         }
     }
 }

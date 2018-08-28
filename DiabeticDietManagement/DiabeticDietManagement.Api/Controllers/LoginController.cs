@@ -18,6 +18,7 @@ namespace DiabeticDietManagement.Api.Controllers
             _cache = cache;
         }
 
+        [Route("api/login")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Login command)
         {

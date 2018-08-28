@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiabeticDietManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(DiabeticDietContext))]
-    [Migration("20180823193339_Initial-Migration")]
+    [Migration("20180828183743_Initial-Migration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,17 +28,25 @@ namespace DiabeticDietManagement.Infrastructure.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200);
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(200);
 
                     b.Property<string>("Role");
 
-                    b.Property<string>("Salt");
+                    b.Property<string>("Salt")
+                        .IsRequired()
+                        .HasMaxLength(200);
 
                     b.Property<DateTime>("UpdatedAt");
 
-                    b.Property<string>("Username");
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(200);
 
                     b.HasKey("Id");
 

@@ -4,23 +4,23 @@ using System.Text;
 
 namespace DiabeticDietManagement.Core.Domain
 {
-    public class Doctor
+    public class Receptionist
     {
         public Guid UserId { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
 
-        protected Doctor()
+        protected Receptionist()
         {
 
         }
 
-        public Doctor(User user)
+        public Receptionist(User user)
         {
             UserId = UserId;
         }
 
-        public Doctor(User user, string firstName, string lastName)
+        public Receptionist(User user, string firstName, string lastName)
         {
             UserId = UserId;
 
@@ -30,7 +30,7 @@ namespace DiabeticDietManagement.Core.Domain
 
         public void SetFirstName(string firstName)
         {
-            if(String.IsNullOrWhiteSpace(firstName))
+            if (String.IsNullOrWhiteSpace(firstName))
             {
                 throw new DomainException(ErrorCodes.InvalidFirstName, "First name cannot be empty.");
             }

@@ -6,9 +6,9 @@ namespace DiabeticDietManagement.Core.Domain
 {
     public class Doctor
     {
-        public Guid UserId { get; private set; }
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
+        public Guid UserId { get; protected set; }
+        public string FirstName { get; protected set; }
+        public string LastName { get; protected set; }
 
         protected Doctor()
         {
@@ -17,12 +17,12 @@ namespace DiabeticDietManagement.Core.Domain
 
         public Doctor(User user)
         {
-            UserId = UserId;
+            UserId = user.Id;
         }
 
         public Doctor(User user, string firstName, string lastName)
         {
-            UserId = UserId;
+            UserId = user.Id;
 
             SetFirstName(firstName);
             SetLastName(lastName);

@@ -6,20 +6,26 @@ namespace DiabeticDietManagement.Core.Domain
 {
     public class Patient
     {
-        public Guid UserId { get; private set; }
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
+        public Guid UserId { get; protected set; }
+        public string FirstName { get; protected set; }
+        public string LastName { get; protected set; }
+        public Guid RecommendedMealPlanId { get; protected set; }
 
-        public Guid AttendingPhysicianId { get; private set; }
+        public Guid AttendingPhysicianId { get; protected set; }
+
+        protected Patient()
+        {
+
+        }
 
         public Patient(User user)
         {
-            UserId = UserId;
+            UserId = user.Id;
         }
 
         public Patient(User user, string firstName, string lastName)
         {
-            UserId = UserId;
+            UserId = user.Id;
 
             SetFirstName(firstName);
             SetLastName(lastName);
@@ -47,5 +53,11 @@ namespace DiabeticDietManagement.Core.Domain
         {
             AttendingPhysicianId = attendingPhysician.UserId;
         }
+
+        public void SetRecommendedMealPlanId(Guid recommendedMealPlanId)
+        {
+            RecommendedMealPlanId = recommendedMealPlanId;
+        }
+
     }
 }

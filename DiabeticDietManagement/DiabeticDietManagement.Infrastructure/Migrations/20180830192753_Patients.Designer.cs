@@ -4,14 +4,16 @@ using DiabeticDietManagement.Infrastructure.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DiabeticDietManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(DiabeticDietContext))]
-    partial class DiabeticDietContextModelSnapshot : ModelSnapshot
+    [Migration("20180830192753_Patients")]
+    partial class Patients
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

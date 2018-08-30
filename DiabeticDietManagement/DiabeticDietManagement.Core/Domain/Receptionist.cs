@@ -6,9 +6,9 @@ namespace DiabeticDietManagement.Core.Domain
 {
     public class Receptionist
     {
-        public Guid UserId { get; private set; }
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
+        public Guid UserId { get; protected set; }
+        public string FirstName { get; protected set; }
+        public string LastName { get; protected set; }
 
         protected Receptionist()
         {
@@ -17,12 +17,12 @@ namespace DiabeticDietManagement.Core.Domain
 
         public Receptionist(User user)
         {
-            UserId = UserId;
+            UserId = user.Id;
         }
 
         public Receptionist(User user, string firstName, string lastName)
         {
-            UserId = UserId;
+            UserId = user.Id;
 
             SetFirstName(firstName);
             SetLastName(lastName);

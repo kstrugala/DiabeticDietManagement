@@ -12,5 +12,8 @@ namespace DiabeticDietManagement.Core.Domain
         public static string InvalidUsername => "invalid_username";
         public static string InvalidFirstName => "invalid_firstname";
         public static string InvalidLastName => "invalid_lastname";
+        public static string InvalidProductName => "invalid_productname";
+        public static string InvalidPortion => "invalid_portion";
+        public static string InvalidDailyMealPlan => "invalid_DailyMealPlan";
     }
 }

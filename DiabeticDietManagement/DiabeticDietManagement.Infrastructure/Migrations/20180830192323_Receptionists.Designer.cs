@@ -4,14 +4,16 @@ using DiabeticDietManagement.Infrastructure.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DiabeticDietManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(DiabeticDietContext))]
-    partial class DiabeticDietContextModelSnapshot : ModelSnapshot
+    [Migration("20180830192323_Receptionists")]
+    partial class Receptionists
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,24 +79,6 @@ namespace DiabeticDietManagement.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Meal");
-                });
-
-            modelBuilder.Entity("DiabeticDietManagement.Core.Domain.Patient", b =>
-                {
-                    b.Property<Guid>("UserId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("AttendingPhysicianId");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<Guid>("RecommendedMealPlanId");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("DiabeticDietManagement.Core.Domain.Portion", b =>

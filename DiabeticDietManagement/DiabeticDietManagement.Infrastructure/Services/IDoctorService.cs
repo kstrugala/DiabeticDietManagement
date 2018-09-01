@@ -12,6 +12,7 @@ namespace DiabeticDietManagement.Infrastructure.Services
     public interface IDoctorService : IService
     {
         Task<DoctorDto> GetAsync(Guid Id);
+        Task<DoctorDto> GetAsync(string email);
         Task<PagedResult<DoctorDto>> BrowseAsync(DoctorQuery query);
         Task CreateAsync(CreateDoctor doctor);
         Task UpdateAsync(UpdateDoctor doctor);

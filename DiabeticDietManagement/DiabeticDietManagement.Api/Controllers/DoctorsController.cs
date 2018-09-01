@@ -18,7 +18,7 @@ namespace DiabeticDietManagement.Api.Controllers
         public DoctorsController(ICommandDispatcher commandDispatcher, IDoctorService doctorService) : base(commandDispatcher)
         {
             _doctorService = doctorService;
-        }
+        } 
 
         [HttpGet("{email}", Name = "GetDoctor")]
         public async Task<IActionResult> Get(string email)
@@ -56,7 +56,7 @@ namespace DiabeticDietManagement.Api.Controllers
 
             if (doctor!=null)
             {
-                return CreatedAtRoute("GetDoctor", doctor);
+                return CreatedAtRoute("GetDoctor",new { email=command.Email}, doctor);
             }
 
             return Ok();

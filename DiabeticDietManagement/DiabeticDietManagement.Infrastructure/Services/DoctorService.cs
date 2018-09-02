@@ -33,6 +33,12 @@ namespace DiabeticDietManagement.Infrastructure.Services
             var repositoryResults = await _doctorRepository.GetDoctorsAsync(query);
             var result = _mapper.Map<IEnumerable<Doctor>, IEnumerable<DoctorDto>>(repositoryResults.Results);
 
+            foreach (var doctor in result)
+            {
+                var user = await _userRepository.GetAsync(doctor.Id);
+                doctor.Email = user.Email;
+            }
+
             return new PagedResult<DoctorDto>(result, repositoryResults.Pagination.TotalCount,
                                               repositoryResults.Pagination.CurrentPage, repositoryResults.Pagination.PageSize,
                                               repositoryResults.Pagination.TotalPages);
@@ -70,10 +76,6 @@ namespace DiabeticDietManagement.Infrastructure.Services
             await _doctorRepository.AddAsync(d);
         }
 
-        public async Task<DoctorDto> GetAsync(Guid Id)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<DoctorDto> GetAsync(string email)
         {
@@ -83,14 +85,38 @@ namespace DiabeticDietManagement.Infrastructure.Services
             {
                 var doctor = await _doctorRepository.GetAsync(user.Id);
 
-                return _mapper.Map<Doctor, DoctorDto>(doctor);
+                var doctorDto = _mapper.Map<Doctor, DoctorDto>(doctor);
+                return _mapper.Map<UserDto, DoctorDto>(user, doctorDto);
+
             }
             return null;
         }
-
+        
         public async Task UpdateAsync(UpdateDoctor doctor)
         {
-            throw new NotImplementedException();
+            var user = await _userService.GetAsync(doctor.Email);
+
+            if(user==null)
+            {
+                throw new ServiceException(ErrorCodes.UserNotFound, $"User with email: {doctor.Email} doesn't exist.");
+            }
+
+            if (user.Role.Equals("Doctor"))
+            {
+                var doc = await _doctorRepository.GetAsync(user.Id);
+                if(!String.IsNullOrWhiteSpace(doctor.FirstName))
+                    doc.SetFirstName(doctor.FirstName);
+                if (!String.IsNullOrWhiteSpace(doctor.LastName))
+                    doc.SetLastName(doctor.LastName);
+
+                if(doctor.NewEmail!=null)
+                {
+                    await _userService.ChangeEmail(doctor.Email, doctor.NewEmail);
+                }
+                await _doctorRepository.UpdateAsync(doc);
+            }
+            else
+                throw new ServiceException(ErrorCodes.UserNotFound, $"Doctor with email:{doctor.Email} doesn't exist.");
         }
     }
 }

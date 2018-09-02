@@ -13,5 +13,8 @@ namespace DiabeticDietManagement.Infrastructure.Services
         Task RegisterAsync(Guid userId, string email,
             string username, string password, string role);
         Task LoginAsync(string email, string password);
+        Task ChangePassword(string email, string oldPassword, string newPassword);
+        Task SetPassword(string email, string password);
+        Task ChangeEmail(string oldEmail, string newEmail);
     }
 }

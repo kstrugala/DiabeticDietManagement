@@ -67,5 +67,60 @@ namespace DiabeticDietManagement.Infrastructure.Services
             user = new User(userId, email, username, role, hash, salt);
             await _userRepository.AddAsync(user);
         }
+
+        public async Task ChangePassword(string email, string oldPassword, string newPassword)
+        {
+            var user = await _userRepository.GetAsync(email);
+            if (user == null)
+            {
+                throw new ServiceException(ErrorCodes.InvalidCredentials, "Invalid credentials");
+            }
+
+            var hash = _encrypter.GetHash(oldPassword, user.Salt);
+            if (user.Password == hash)
+            {
+                await SetPassword(email, newPassword);
+            }
+            throw new ServiceException(ErrorCodes.InvalidCredentials, "Invalid credentials");
+        }
+
+        public async Task ChangeEmail(string oldEmail, string newEmail)
+        {
+            var user = await _userRepository.GetAsync(oldEmail);
+
+            if (user == null)
+            {
+                throw new ServiceException(ErrorCodes.InvalidEmail, $"User with email: '{oldEmail}' doesn't exists.");
+            }
+
+            // Check new email
+            var emailCheck = await _userRepository.GetAsync(newEmail);
+
+            if (emailCheck != null)
+            {
+                throw new ServiceException(ErrorCodes.EmailInUse, $"User with email: '{newEmail}' already exists.");
+            }
+
+            // Set new email
+            user.SetEmail(newEmail);
+            
+            await _userRepository.UpdateAsync(user);
+
+        }
+
+        public async Task SetPassword(string email, string password)
+        {
+            var user = await _userRepository.GetAsync(email);
+            if (user == null)
+            {
+                throw new ServiceException(ErrorCodes.InvalidEmail, $"User with emial:{email} doesn't exist.");
+            }
+
+            var salt = _encrypter.GetSalt(password);
+            var hash = _encrypter.GetHash(password, salt);
+
+            user.SetPassword(hash, salt);
+            await _userRepository.UpdateAsync(user);
+        }
     }
 }

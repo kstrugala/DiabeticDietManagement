@@ -84,10 +84,11 @@ namespace DiabeticDietManagement.Infrastructure.Services
             if(user!=null)
             {
                 var doctor = await _doctorRepository.GetAsync(user.Id);
-
-                var doctorDto = _mapper.Map<Doctor, DoctorDto>(doctor);
-                return _mapper.Map<UserDto, DoctorDto>(user, doctorDto);
-
+                if (doctor != null)
+                {
+                    var doctorDto = _mapper.Map<Doctor, DoctorDto>(doctor);
+                    return _mapper.Map<UserDto, DoctorDto>(user, doctorDto);
+                }
             }
             return null;
         }

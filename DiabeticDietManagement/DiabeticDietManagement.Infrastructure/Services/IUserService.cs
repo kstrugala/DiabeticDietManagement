@@ -8,6 +8,7 @@ namespace DiabeticDietManagement.Infrastructure.Services
 {
     public interface IUserService : IService
     {
+        Task<UserDto> GetAsync(Guid id);
         Task<UserDto> GetAsync(string email);
         Task<IEnumerable<UserDto>> BrowseAsync();
         Task RegisterAsync(Guid userId, string email,
@@ -16,5 +17,6 @@ namespace DiabeticDietManagement.Infrastructure.Services
         Task ChangePassword(string email, string oldPassword, string newPassword);
         Task SetPassword(string email, string password);
         Task ChangeEmail(string oldEmail, string newEmail);
+        Task RemoveAsync(Guid id);
     }
 }

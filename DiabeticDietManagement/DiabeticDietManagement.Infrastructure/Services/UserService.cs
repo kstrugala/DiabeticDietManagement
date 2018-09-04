@@ -23,6 +23,14 @@ namespace DiabeticDietManagement.Infrastructure.Services
             _mapper = mapper;
         }
 
+
+        public async Task<UserDto> GetAsync(Guid id)
+        {
+            var user = await _userRepository.GetAsync(id);
+
+            return _mapper.Map<User, UserDto>(user);
+        }
+
         public async Task<UserDto> GetAsync(string email)
         {
             var user = await _userRepository.GetAsync(email);
@@ -121,6 +129,11 @@ namespace DiabeticDietManagement.Infrastructure.Services
 
             user.SetPassword(hash, salt);
             await _userRepository.UpdateAsync(user);
+        }
+
+        public async Task RemoveAsync(Guid id)
+        {
+            await _userRepository.RemoveAsync(id);
         }
     }
 }

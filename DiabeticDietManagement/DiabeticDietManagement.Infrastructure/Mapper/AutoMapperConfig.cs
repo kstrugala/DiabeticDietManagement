@@ -18,6 +18,10 @@ namespace DiabeticDietManagement.Infrastructure.Mapper
 
                cfg.CreateMap<UserDto, ReceptionistDto>();
                cfg.CreateMap<Receptionist, ReceptionistDto>().ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.UserId));
+
+               cfg.CreateMap<UserDto, PatientDto>();
+               cfg.CreateMap<Patient, PatientDto>().ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.UserId));
+
            })
            .CreateMapper();
     }

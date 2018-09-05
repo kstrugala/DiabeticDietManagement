@@ -75,5 +75,21 @@ namespace DiabeticDietManagement.Api.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{email}", Name ="RemovePatient")]
+        public async Task<IActionResult> RemovePatient(string email)
+        {
+            var command = new RemovePatient();
+            command.Email = email;
+
+            if(String.IsNullOrWhiteSpace(email))
+            {
+                return BadRequest();
+            }
+
+            await CommandDispatcher.DispatchAsync<RemovePatient>(command);
+
+            return NoContent();
+        }
     }
 }

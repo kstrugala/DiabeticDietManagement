@@ -6,6 +6,6 @@ namespace DiabeticDietManagement.Core.Queries
 {
     public class ProductQuery : PageQuery
     {
-        public string ProductName { get; set; }
+        public string ProductName { get; set; } = "";
     }
 }

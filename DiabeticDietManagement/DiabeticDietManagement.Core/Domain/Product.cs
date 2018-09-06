@@ -28,6 +28,16 @@ namespace DiabeticDietManagement.Core.Domain
             SetCarbohydrates(Carbohydrates);
         }
 
+        public Product(Guid id, string productName, uint glycemicIndex, uint glycemicLoad, uint serveSize, uint carbohydrates)
+        {
+            Id = id;
+            SetProductName(productName);
+            SetGlycemicIndex(glycemicIndex);
+            SetGlycemicLoad(glycemicLoad);
+            SetServeSize(serveSize);
+            SetCarbohydrates(carbohydrates);
+        }
+
         public void SetCarbohydrates(uint carbohydrates)
         {
             Carbohydrates = carbohydrates;

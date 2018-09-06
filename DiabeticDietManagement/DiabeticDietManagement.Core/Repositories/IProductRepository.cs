@@ -11,6 +11,7 @@ namespace DiabeticDietManagement.Core.Repositories
     public interface IProductRepository : IRepository
     {
         Task<Product> GetAsync(Guid Id);
+        Task<Product> GetAsync(string productName);
         Task<PagedResult<Product>> GetProductsAsync(ProductQuery query);
         Task<IEnumerable<Product>> GetAllAsync();
         Task AddAsync(Product product);

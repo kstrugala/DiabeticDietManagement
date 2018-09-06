@@ -15,5 +15,7 @@ namespace DiabeticDietManagement.Infrastructure
         public static string InvalidPassword => "invalid_password";
         public static string UserNotFound => "user_not_found";
 
+        public static string InvalidProductName => "invalid_productname";
+        public static string InvalidId => "invalid_id";
     }
 }

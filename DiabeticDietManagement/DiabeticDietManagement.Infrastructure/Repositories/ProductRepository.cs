@@ -34,6 +34,8 @@ namespace DiabeticDietManagement.Infrastructure.Repositories
         public async Task<Product> GetAsync(Guid Id) 
             => await _context.Products.SingleOrDefaultAsync(x=>x.Id==Id);
 
+        public async Task<Product> GetAsync(string productName)
+            => await _context.Products.SingleOrDefaultAsync(x => x.ProductName == productName);
 
         public async Task<PagedResult<Product>> GetProductsAsync(ProductQuery query)
         {

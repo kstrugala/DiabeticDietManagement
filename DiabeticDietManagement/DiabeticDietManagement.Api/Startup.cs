@@ -91,7 +91,7 @@ namespace DiabeticDietManagement.Api
 
             app.UseAuthentication();
 
-            app.UseMiddleware<ExceptionHandlerMiddleware>();
+            //app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseMvc();
 
             applicationLifetime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());

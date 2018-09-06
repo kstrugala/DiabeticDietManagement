@@ -21,7 +21,7 @@ namespace DiabeticDietManagement.Infrastructure.Handlers.Patients
 
         public async Task HandleAsync(RemovePatient command)
             => await _handler
-                        .Run(async () => await _patientService.RemoveAsync(command.Email))
+                        .Run(async () => await _patientService.RemoveAsync(command.Id))
                         .Next()
                         .ExecuteAllAsync();
     }

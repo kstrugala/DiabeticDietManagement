@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DiabeticDietManagement.Core.Domain
@@ -8,7 +9,7 @@ namespace DiabeticDietManagement.Core.Domain
     {
         public Guid Id { get; protected set; }
         public string Name { get; protected set; }
-        public Guid DoctorId { get; protected set; }
+        //public Guid DoctorId { get; protected set; }
 
         private ISet<DailyMealPlan> _dailyMealPlans = new HashSet<DailyMealPlan>();
 
@@ -24,15 +25,20 @@ namespace DiabeticDietManagement.Core.Domain
 
         }
 
-        public RecommendedMealPlan(Guid doctorId, string name)
+        public RecommendedMealPlan(string name)
         {
             Id = Guid.NewGuid();
+            SetName(name);
+        }
+
+        public void SetName(string name)
+        {
             Name = name;
         }
 
         public void AddDailyMealPlan(DailyMealPlan dailyMealPlan)
         {
-            var d = DailyMealPlan.SingleOrDefault(x => x.Equals(dailyMealPlan));
+            var d = DailyMealPlans.SingleOrDefault(x => x.Day == dailyMealPlan.Day);
 
             if (d != null)
             {
@@ -41,9 +47,24 @@ namespace DiabeticDietManagement.Core.Domain
             _dailyMealPlans.Add(dailyMealPlan);
         }
 
+        public void UpdateDailyMealPlan(DailyMealPlan dailyMealPlan)
+        {
+            var d = DailyMealPlans.SingleOrDefault(x => x.Day == dailyMealPlan.Day);
+
+            if (d == null)
+            {
+                throw new DomainException(ErrorCodes.InvalidPortion, $"Daily meal plan doesn't exist.");
+            }
+            d.SetBreakfast(dailyMealPlan.Breakfast);
+            d.SetSnap(dailyMealPlan.Snap);
+            d.SetLunch(dailyMealPlan.Lunch);
+            d.SetDinner(dailyMealPlan.Dinner);
+            d.SetSupper(dailyMealPlan.Supper);
+        }
+
         public void RemoveDailyMealPlan(DailyMealPlan dailyMealPlan)
         {
-            var d = DailyMealPlan.SingleOrDefault(x => x.Equals(dailyMealPlan));
+            var d = DailyMealPlans.SingleOrDefault(x => x.Equals(dailyMealPlan));
 
             if (d == null)
             {

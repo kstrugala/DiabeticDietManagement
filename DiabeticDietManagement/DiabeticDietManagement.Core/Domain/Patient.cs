@@ -10,7 +10,6 @@ namespace DiabeticDietManagement.Core.Domain
         public string FirstName { get; protected set; }
         public string LastName { get; protected set; }
         public Guid RecommendedMealPlanId { get; protected set; }
-
         public Guid AttendingPhysicianId { get; protected set; }
 
         protected Patient()

@@ -20,10 +20,10 @@ namespace DiabeticDietManagement.Api.Controllers
             _patientService = patientService;
         }
 
-        [HttpGet("{email}", Name = "GetPatient")]
-        public async Task<IActionResult> GetPatient(string email)
+        [HttpGet("{id}", Name = "GetPatientById")]
+        public async Task<IActionResult> GetPatientById(Guid id)
         {
-            var patient = await _patientService.GetAsync(email);
+            var patient = await _patientService.GetAsync(id);
 
             if (patient == null)
             {
@@ -32,6 +32,8 @@ namespace DiabeticDietManagement.Api.Controllers
 
             return Json(patient);
         }
+
+
 
         [HttpGet(Name = "GetPatients")]
         public async Task<IActionResult> GetPatients([FromQuery] PatientQuery query)
@@ -55,18 +57,18 @@ namespace DiabeticDietManagement.Api.Controllers
 
             if (patient != null)
             {
-                return CreatedAtRoute("GetPatient", new { email = command.Email }, patient);
+                return CreatedAtRoute("GetPatientById", new { id = patient.Id }, patient);
             }
 
             return StatusCode(500);
         }
 
-        [HttpPut("{email}", Name = "UpdatePatient")]
-        public async Task<IActionResult> UpdatePatient(string email, [FromBody] UpdatePatient command)
+        [HttpPut("{id}", Name = "UpdatePatient")]
+        public async Task<IActionResult> UpdatePatient(Guid id, [FromBody] UpdatePatient command)
         {
-            command.Email = email;
+            command.Id = id;
 
-            if (command.FirstName == null && command.LastName == null && command.NewEmail == null)
+            if (command.FirstName == null && command.LastName == null && command.Email == null)
             {
                 return BadRequest();
             }
@@ -76,20 +78,29 @@ namespace DiabeticDietManagement.Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{email}", Name ="RemovePatient")]
-        public async Task<IActionResult> RemovePatient(string email)
+        [HttpDelete("{id}", Name = "RemovePatient")]
+        public async Task<IActionResult> RemovePatient(Guid id)
         {
             var command = new RemovePatient();
-            command.Email = email;
+            command.Id = id;
 
-            if(String.IsNullOrWhiteSpace(email))
-            {
-                return BadRequest();
-            }
 
             await CommandDispatcher.DispatchAsync<RemovePatient>(command);
 
             return NoContent();
         }
+
+
+        //Meal plan
+        [HttpGet("{id}/recommendedmealplan")]
+        public async Task<IActionResult> GetRecommendedMealPlan(Guid id)
+        {
+            var plan = await _patientService.GetRecommendedMealPlanAsync(id);
+
+            return Json(plan);
+        }
+
+
+
     }
 }

@@ -6,6 +6,6 @@ namespace DiabeticDietManagement.Infrastructure.Commands.Patients
 {
     public class RemovePatient : ICommand
     {
-        public string Email { get; set; }
+        public Guid Id { get; set; }
     }
 }

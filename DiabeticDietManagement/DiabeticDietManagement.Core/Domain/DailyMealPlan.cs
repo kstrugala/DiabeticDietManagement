@@ -36,11 +36,7 @@ namespace DiabeticDietManagement.Core.Domain
             Breakfast = breakfast;
         }
 
-        internal static object SingleOrDefault(Func<object, object> p)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public void SetSnap(Meal snap)
         {
             Snap = snap;

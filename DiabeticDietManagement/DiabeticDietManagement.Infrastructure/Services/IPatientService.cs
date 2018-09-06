@@ -11,10 +11,15 @@ namespace DiabeticDietManagement.Infrastructure.Services
 {
     public interface IPatientService : IService
     {
+        Task<PatientDto> GetAsync(Guid id);
         Task<PatientDto> GetAsync(string email);
         Task<PagedResult<PatientDto>> BrowseAsync(PatientQuery query);
         Task CreateAsync(CreatePatient patient);
         Task UpdateAsync(UpdatePatient patient);
+        Task RemoveAsync(Guid id);
         Task RemoveAsync(string email);
+
+        Task<RecommendedMealPlanDto> GetRecommendedMealPlanAsync(Guid id);
+
     }
 }

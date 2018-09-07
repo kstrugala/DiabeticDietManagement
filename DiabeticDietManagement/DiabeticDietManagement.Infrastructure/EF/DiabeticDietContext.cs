@@ -13,7 +13,6 @@ namespace DiabeticDietManagement.Infrastructure.EF
 
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<RecommendedMealPlan> RecommendedMealPlans { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Receptionist> Receptionists { get; set; }
         public DbSet<Patient> Patients { get; set; }
@@ -50,9 +49,6 @@ namespace DiabeticDietManagement.Infrastructure.EF
 
             var productBuilder = modelBuilder.Entity<Product>();
             productBuilder.HasKey(x => x.Id);
-
-            var recommendedMealPlansBuilder = modelBuilder.Entity<RecommendedMealPlan>();
-            recommendedMealPlansBuilder.HasKey(x => x.Id);
 
             var doctorBuilder = modelBuilder.Entity<Doctor>();
             doctorBuilder.HasKey(x => x.UserId);

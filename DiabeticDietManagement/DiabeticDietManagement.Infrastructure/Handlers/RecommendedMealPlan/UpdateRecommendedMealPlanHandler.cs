@@ -18,7 +18,8 @@ namespace DiabeticDietManagement.Infrastructure.Handlers.RecommendedMealPlan
 
         public async Task HandleAsync(UpdateRecommendedMealPlan command)
         {
-            await _patientService.UpdateRecommendedMealPlanAsync(command);
+            throw new NotImplementedException();
+            //await _patientService.UpdateRecommendedMealPlanAsync(command);
         }
     }
 }

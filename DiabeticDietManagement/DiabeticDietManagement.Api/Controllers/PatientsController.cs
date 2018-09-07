@@ -96,9 +96,7 @@ namespace DiabeticDietManagement.Api.Controllers
         [HttpGet("{id}/recommendedmealplan")]
         public async Task<IActionResult> GetRecommendedMealPlan(Guid id)
         {
-            var plan = await _patientService.GetRecommendedMealPlanAsync(id);
-
-            return Json(plan);
+            return Json(id);
         }
 
         [HttpPut("{id}/recommendedmealplan")]

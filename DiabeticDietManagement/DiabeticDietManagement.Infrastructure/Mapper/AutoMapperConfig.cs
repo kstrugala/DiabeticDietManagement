@@ -24,8 +24,6 @@ namespace DiabeticDietManagement.Infrastructure.Mapper
 
                cfg.CreateMap<Product, ProductDto>();
 
-               cfg.CreateMap<RecommendedMealPlan, RecommendedMealPlanDto>();
-
            })
            .CreateMapper();
     }

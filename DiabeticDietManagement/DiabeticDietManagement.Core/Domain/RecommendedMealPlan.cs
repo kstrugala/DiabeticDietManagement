@@ -53,13 +53,16 @@ namespace DiabeticDietManagement.Core.Domain
 
             if (d == null)
             {
-                throw new DomainException(ErrorCodes.InvalidPortion, $"Daily meal plan doesn't exist.");
+                AddDailyMealPlan(dailyMealPlan);
             }
-            d.SetBreakfast(dailyMealPlan.Breakfast);
-            d.SetSnap(dailyMealPlan.Snap);
-            d.SetLunch(dailyMealPlan.Lunch);
-            d.SetDinner(dailyMealPlan.Dinner);
-            d.SetSupper(dailyMealPlan.Supper);
+            else
+            {
+                d.SetBreakfast(dailyMealPlan.Breakfast);
+                d.SetSnap(dailyMealPlan.Snap);
+                d.SetLunch(dailyMealPlan.Lunch);
+                d.SetDinner(dailyMealPlan.Dinner);
+                d.SetSupper(dailyMealPlan.Supper);
+            }
         }
 
         public void RemoveDailyMealPlan(DailyMealPlan dailyMealPlan)

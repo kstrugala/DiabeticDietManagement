@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DiabeticDietManagement.Core.Queries;
 using DiabeticDietManagement.Infrastructure.Commands;
 using DiabeticDietManagement.Infrastructure.Commands.Patients;
+using DiabeticDietManagement.Infrastructure.Commands.RecommendedMealPlan;
 using DiabeticDietManagement.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -100,7 +101,15 @@ namespace DiabeticDietManagement.Api.Controllers
             return Json(plan);
         }
 
+        [HttpPut("{id}/recommendedmealplan")]
+        public async Task<IActionResult> UpdateRecommendedMealPlan(Guid id, [FromBody] UpdateRecommendedMealPlan command)
+        {
+            command.Id = id;
 
+            await CommandDispatcher.DispatchAsync<UpdateRecommendedMealPlan>(command);
+
+            return NoContent();
+        }
 
     }
 }

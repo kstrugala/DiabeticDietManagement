@@ -1,5 +1,6 @@
 ﻿using DiabeticDietManagement.Core.Queries;
 using DiabeticDietManagement.Infrastructure.Commands.Doctors;
+using DiabeticDietManagement.Infrastructure.Commands.Patients;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,16 @@ namespace DiabeticDietManagement.Infrastructure.Services
     {
         private readonly IUserService _userService;
         private readonly IDoctorService _doctorService;
+        private readonly IPatientService _patientService;
+        private readonly IRecommendedMealPlanService _recommendedMealPlanService;
         private readonly ILogger _logger;
 
-        public DataInitializer(IUserService userService, IDoctorService doctorService,  ILogger<DataInitializer> logger)
+        public DataInitializer(IUserService userService, IDoctorService doctorService, IPatientService patientService, IRecommendedMealPlanService recommendedMealPlanService, ILogger<DataInitializer> logger)
         {
             _userService = userService;
             _doctorService = doctorService;
+            _patientService = patientService;
+            _recommendedMealPlanService = recommendedMealPlanService;
             _logger = logger;
         }
 
@@ -47,6 +52,24 @@ namespace DiabeticDietManagement.Infrastructure.Services
                 await _doctorService.CreateAsync(new CreateDoctor { Email = "doctor1@test.com", FirstName = "Jan", LastName = "Kowalski", Username = "jan-kowalski", Password = "secret" });
                 await _doctorService.CreateAsync(new CreateDoctor { Email = "doctor2@test.com", FirstName = "Janina", LastName = "Nowak", Username = "janina-nowak", Password = "secret" });
             }
+
+            //var patients = await _patientService.BrowseAsync(new PatientQuery());
+
+            //if (patients.Results.Any())
+            //{
+            //    _logger.LogTrace("Patients were already initialized.");
+            //}
+            //else
+            //{
+            //    _logger.LogTrace("Initializing patients...");
+            //    await _patientService.CreateAsync(new CreatePatient { Email = "patient1@test.com", FirstName = "Adam", LastName = "Wilk", Password = "secret", Username = "adam-wilk" });
+            //    var patient = await _patientService.GetAsync("patient1@test.com");
+
+            //    /Initialize meal
+            //    var plan = await _patientService.GetRecommendedMealPlanAsync(patient.Id);
+
+            //}
+
         }
     }
 }

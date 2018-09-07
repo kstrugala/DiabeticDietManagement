@@ -17,5 +17,7 @@ namespace DiabeticDietManagement.Infrastructure
 
         public static string InvalidProductName => "invalid_productname";
         public static string InvalidId => "invalid_id";
+
+        public static string InvalidPlanName => "invalid_planname";
     }
 }

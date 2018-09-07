@@ -8,6 +8,7 @@ using DiabeticDietManagement.Core.Helpers;
 using DiabeticDietManagement.Core.Queries;
 using DiabeticDietManagement.Core.Repositories;
 using DiabeticDietManagement.Infrastructure.Commands.Patients;
+using DiabeticDietManagement.Infrastructure.Commands.RecommendedMealPlan;
 using DiabeticDietManagement.Infrastructure.DTO;
 using DiabeticDietManagement.Infrastructure.Exceptions;
 
@@ -195,5 +196,15 @@ namespace DiabeticDietManagement.Infrastructure.Services
             return plan;            
         }
 
+        public async Task UpdateRecommendedMealPlanAsync(UpdateRecommendedMealPlan command)
+        {
+            var patient = await _patientRepository.GetAsync(command.Id);
+
+            if (patient == null)
+                throw new ServiceException(ErrorCodes.InvalidId, $"Patient with id:{command.Id} doesn't exist.");
+
+            await _recommendedMealPlanService.UpdateMealPlan(patient.RecommendedMealPlanId, command);
+
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace DiabeticDietManagement.Core.Domain
         public Guid UserId { get; protected set; }
         public string FirstName { get; protected set; }
         public string LastName { get; protected set; }
-        public Guid RecommendedMealPlanId { get; protected set; }
+        public string RecommendedMealPlan { get; protected set; }
         public Guid AttendingPhysicianId { get; protected set; }
 
         protected Patient()
@@ -53,9 +53,9 @@ namespace DiabeticDietManagement.Core.Domain
             AttendingPhysicianId = attendingPhysician.UserId;
         }
 
-        public void SetRecommendedMealPlanId(Guid recommendedMealPlanId)
+        public void SetRecommendedMealPlan(string recommendedMealPlan)
         {
-            RecommendedMealPlanId = recommendedMealPlanId;
+            RecommendedMealPlan = recommendedMealPlan;
         }
 
     }

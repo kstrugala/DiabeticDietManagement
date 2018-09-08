@@ -1,4 +1,5 @@
-﻿using DiabeticDietManagement.Core.Helpers;
+﻿using DiabeticDietManagement.Core.Domain;
+using DiabeticDietManagement.Core.Helpers;
 using DiabeticDietManagement.Core.Queries;
 using DiabeticDietManagement.Infrastructure.Commands.Patients;
 using DiabeticDietManagement.Infrastructure.Commands.RecommendedMealPlan;
@@ -19,6 +20,9 @@ namespace DiabeticDietManagement.Infrastructure.Services
         Task UpdateAsync(UpdatePatient patient);
         Task RemoveAsync(Guid id);
         Task RemoveAsync(string email);
+
+        Task<MealPlanDto> GetMealPlanAsync(Guid id);
+        Task UpdateMealPlanAsync(UpdateRecommendedMealPlan command);
 
 
     }

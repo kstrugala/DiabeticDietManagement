@@ -101,6 +101,9 @@ namespace DiabeticDietManagement.Infrastructure.Services
                 throw new ServiceException(ErrorCodes.InvalidEmail, $"User with email: '{oldEmail}' doesn't exists.");
             }
 
+            if (oldEmail.Equals(newEmail))
+                return;
+
             // Check new email
             var emailCheck = await _userRepository.GetAsync(newEmail);
 

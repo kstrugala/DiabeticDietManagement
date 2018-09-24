@@ -93,6 +93,23 @@ namespace DiabeticDietManagement.Infrastructure.Services
             return null;
         }
 
+        public async Task<ReceptionistDto> GetAsync(Guid id)
+        {
+            var user = await _userService.GetAsync(id);
+
+            if (user != null)
+            {
+                var receptionist = await _receptionistRepository.GetAsync(user.Id);
+
+                if (receptionist != null)
+                {
+                    var receptionistDto = _mapper.Map<Receptionist, ReceptionistDto>(receptionist);
+                    return _mapper.Map<UserDto, ReceptionistDto>(user, receptionistDto);
+                }
+            }
+            return null;
+        }
+
         public async Task UpdateAsync(UpdateReceptionist receptionist)
         {
             var user = await _userService.GetAsync(receptionist.Email);

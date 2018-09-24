@@ -40,7 +40,7 @@ namespace DiabeticDietManagement.Infrastructure.Repositories
 
             // Filter
             var linqQuery = _context.Receptionists
-                                    .Where(x => x.FirstName.Contains(query.FirstName) || x.LastName.Contains(query.LastName));
+                                    .Where(x => x.FirstName.Contains(query.FirstName) && x.LastName.Contains(query.LastName));
 
 
             var count = await linqQuery.CountAsync();

@@ -20,10 +20,10 @@ namespace DiabeticDietManagement.Api.Controllers
             _receptionistService = receptionistService;
         }
 
-        [HttpGet("{email}", Name = "GetReceptionist")]
-        public async Task<IActionResult> GetReceptionist(string email)
+        [HttpGet("{id}", Name = "GetReceptionist")]
+        public async Task<IActionResult> GetReceptionist(Guid id)
         {
-            var receptionist = await _receptionistService.GetAsync(email);
+            var receptionist = await _receptionistService.GetAsync(id);
 
             if (receptionist == null)
             {
@@ -62,10 +62,11 @@ namespace DiabeticDietManagement.Api.Controllers
             return StatusCode(500);
         }
 
-        [HttpPut("{email}", Name = "UpdateReceptionist")]
-        public async Task<IActionResult> UpdateReceptionist(string email, [FromBody] UpdateReceptionist command)
+        [HttpPut("{id}", Name = "UpdateReceptionist")]
+        public async Task<IActionResult> UpdateReceptionist(Guid id, [FromBody] UpdateReceptionist command)
         {
-            command.Email = email;
+            var r = await _receptionistService.GetAsync(id);
+            command.Email = r.Email;
 
             if (command.FirstName == null && command.LastName == null && command.NewEmail == null)
             {

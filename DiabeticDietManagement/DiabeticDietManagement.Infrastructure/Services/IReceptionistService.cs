@@ -12,6 +12,7 @@ namespace DiabeticDietManagement.Infrastructure.Services
 {
     public interface IReceptionistService : IService
     {
+        Task<ReceptionistDto> GetAsync(Guid id);
         Task<ReceptionistDto> GetAsync(string email);
         Task<PagedResult<ReceptionistDto>> BrowseAsync(ReceptionistQuery query);
         Task CreateAsync(CreateReceptionist receptionist);

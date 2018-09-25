@@ -22,10 +22,10 @@ namespace DiabeticDietManagement.Api.Controllers
             _doctorService = doctorService;
         }
 
-        [HttpGet("{email}", Name = "GetDoctor")]
-        public async Task<IActionResult> GetDoctor(string email)
+        [HttpGet("{id}", Name = "GetDoctor")]
+        public async Task<IActionResult> GetDoctor(Guid id)
         {
-            var doctor = await _doctorService.GetAsync(email);
+            var doctor = await _doctorService.GetAsync(id);
 
             if (doctor == null)
             {
@@ -65,10 +65,11 @@ namespace DiabeticDietManagement.Api.Controllers
             return StatusCode(500);
         }
 
-        [HttpPut("{email}", Name ="UpdateDoctor")]
-        public async Task<IActionResult> UpateDoctor(string email, [FromBody] UpdateDoctor command)
+        [HttpPut("{id}", Name ="UpdateDoctor")]
+        public async Task<IActionResult> UpateDoctor(Guid id, [FromBody] UpdateDoctor command)
         {
-            command.Email = email;
+            var d = await _doctorService.GetAsync(id);
+            command.Email = d.Email;
 
             if(command.FirstName == null && command.LastName == null && command.NewEmail == null)
             {

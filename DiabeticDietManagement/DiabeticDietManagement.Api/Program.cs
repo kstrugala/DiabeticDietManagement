@@ -20,6 +20,7 @@ namespace DiabeticDietManagement.Api
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseUrls(urls: "http://localhost:50000")
                 .Build();
     }
 }

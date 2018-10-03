@@ -24,7 +24,7 @@ namespace DiabeticDietManagement.Infrastructure.Services
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-        public PatientService(IUserService userService, IPatientRepository patientRepository, IUserRepository userRepository, IProductService productService,  IMapper mapper)
+        public PatientService(IUserService userService, IPatientRepository patientRepository, IUserRepository userRepository, IProductService productService, IMapper mapper)
         {
             _userRepository = userRepository;
             _userService = userService;
@@ -82,7 +82,7 @@ namespace DiabeticDietManagement.Infrastructure.Services
             var plan = new MealPlan("Brak planu");
             var json = JsonConvert.SerializeObject(plan);
             p.SetRecommendedMealPlan(json);
-            
+
             await _patientRepository.AddAsync(p);
         }
 
@@ -118,7 +118,7 @@ namespace DiabeticDietManagement.Infrastructure.Services
             return null;
         }
 
-        
+
         public async Task RemoveAsync(string email)
         {
             var user = await _userService.GetAsync(email);
@@ -277,7 +277,7 @@ namespace DiabeticDietManagement.Infrastructure.Services
             }
             else
                 throw new ServiceException(ErrorCodes.InvalidId, $"Patient with id:{id} doesn't exist");
-            
+
         }
 
         public async Task UpdateMealPlanAsync(UpdateRecommendedMealPlan command)
@@ -287,8 +287,8 @@ namespace DiabeticDietManagement.Infrastructure.Services
             if (patient != null)
             {
                 var plan = new MealPlan(command.Name);
-                
-                if(command.DailyPlans.Count==2) // TODO change to 30
+
+                if (command.DailyPlans.Count == 31)
                 {
                     foreach (var dp in command.DailyPlans)
                     {
@@ -300,9 +300,9 @@ namespace DiabeticDietManagement.Infrastructure.Services
 
                         foreach (var p in dp.Breakfast.Products)
                         {
-                            if(await _productService.GetAsync(p.ProductId)==null)
+                            if (await _productService.GetAsync(p.ProductId) == null)
                             {
-                                throw new  ServiceException(ErrorCodes.InvalidId, $"Product with id:{p.ProductId} doesn't exist.");
+                                throw new ServiceException(ErrorCodes.InvalidId, $"Product with id:{p.ProductId} doesn't exist.");
                             }
 
                             breakfast.Products.Add(new Portion { ProductId = p.ProductId, Quantity = p.Quantity });
@@ -347,6 +347,10 @@ namespace DiabeticDietManagement.Infrastructure.Services
                         plan.DailyPlans.Add(new DailyMealPlan { Day = dp.Day, Breakfast = breakfast, Snap = snap, Lunch = lunch, Dinner = dinner, Supper = supper });
                     }
                 }
+                else
+                {
+                    throw new ServiceException(ErrorCodes.InvalidDailyPlans, "Invalid daily plan count (has to be 31)");
+                }
 
                 string json = JsonConvert.SerializeObject(plan);
                 patient.SetRecommendedMealPlan(json);
@@ -354,6 +358,19 @@ namespace DiabeticDietManagement.Infrastructure.Services
             }
             else
                 throw new ServiceException(ErrorCodes.InvalidId, $"Patient with id:{command.Id} doesn't exist");
+        }
+
+        public async Task<MealPlan> GetMealPlanForEditionAsync(Guid id)
+        {
+            var patient = await _patientRepository.GetAsync(id);
+
+            if (patient != null)
+            {
+                MealPlan plan = JsonConvert.DeserializeObject<MealPlan>(patient.RecommendedMealPlan);
+                return plan;
+            }
+            else
+                throw new ServiceException(ErrorCodes.InvalidId, $"Patient with id:{id} doesn't exist");
         }
     }
 }

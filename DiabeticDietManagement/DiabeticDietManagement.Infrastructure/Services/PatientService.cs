@@ -360,14 +360,107 @@ namespace DiabeticDietManagement.Infrastructure.Services
                 throw new ServiceException(ErrorCodes.InvalidId, $"Patient with id:{command.Id} doesn't exist");
         }
 
-        public async Task<MealPlan> GetMealPlanForEditionAsync(Guid id)
+        public async Task<MealPlanForEditionDto> GetMealPlanForEditionAsync(Guid id)
         {
             var patient = await _patientRepository.GetAsync(id);
 
             if (patient != null)
             {
                 MealPlan plan = JsonConvert.DeserializeObject<MealPlan>(patient.RecommendedMealPlan);
-                return plan;
+
+                var planDto = new MealPlanForEditionDto { Name = plan.Name, DailyPlans = new HashSet<DailyPlanForEditionDto>() };
+
+                foreach (var dp in plan.DailyPlans)
+                {
+                    var breakfast = new MealForEditionDto();
+                    var snap = new MealForEditionDto();
+                    var lunch = new MealForEditionDto();
+                    var dinner = new MealForEditionDto();
+                    var supper = new MealForEditionDto();
+
+                    foreach (var p in dp.Breakfast.Products)
+                    {
+                        var product = await _productService.GetAsync(p.ProductId);
+                        var portionDto = new PortionForEditionDto
+                        {
+                            ProductId = p.ProductId,
+                            Quantity = p.Quantity,
+                            ProductName = product.ProductName,
+                            GlycemicIndex = product.GlycemicIndex,
+                            GlycemicLoad = product.GlycemicLoad,
+                            Carbohydrates = product.Carbohydrates,
+                            ServeSize = product.ServeSize
+                        };
+                        breakfast.Products.Add(portionDto);
+                    }
+                    foreach (var p in dp.Snap.Products)
+                    {
+                        var product = await _productService.GetAsync(p.ProductId);
+                        var portionDto = new PortionForEditionDto
+                        {
+                            ProductId = p.ProductId,
+                            Quantity = p.Quantity,
+                            ProductName = product.ProductName,
+                            GlycemicIndex = product.GlycemicIndex,
+                            GlycemicLoad = product.GlycemicLoad,
+                            Carbohydrates = product.Carbohydrates,
+                            ServeSize = product.ServeSize
+                        };
+                        snap.Products.Add(portionDto);
+                    }
+                    foreach (var p in dp.Lunch.Products)
+                    {
+                        var product = await _productService.GetAsync(p.ProductId);
+                        var portionDto = new PortionForEditionDto
+                        {
+                            ProductId = p.ProductId,
+                            Quantity = p.Quantity,
+                            ProductName = product.ProductName,
+                            GlycemicIndex = product.GlycemicIndex,
+                            GlycemicLoad = product.GlycemicLoad,
+                            Carbohydrates = product.Carbohydrates,
+                            ServeSize = product.ServeSize
+                        };
+                        lunch.Products.Add(portionDto);
+                    }
+                    foreach (var p in dp.Dinner.Products)
+                    {
+                        var product = await _productService.GetAsync(p.ProductId);
+                        var portionDto = new PortionForEditionDto
+                        {
+                            ProductId = p.ProductId,
+                            Quantity = p.Quantity,
+                            ProductName = product.ProductName,
+                            GlycemicIndex = product.GlycemicIndex,
+                            GlycemicLoad = product.GlycemicLoad,
+                            Carbohydrates = product.Carbohydrates,
+                            ServeSize = product.ServeSize
+                        };
+                        dinner.Products.Add(portionDto);
+                    }
+                    foreach (var p in dp.Supper.Products)
+                    {
+                        var product = await _productService.GetAsync(p.ProductId);
+                        var portionDto = new PortionForEditionDto
+                        {
+                            ProductId = p.ProductId,
+                            Quantity = p.Quantity,
+                            ProductName = product.ProductName,
+                            GlycemicIndex = product.GlycemicIndex,
+                            GlycemicLoad = product.GlycemicLoad,
+                            Carbohydrates = product.Carbohydrates,
+                            ServeSize = product.ServeSize
+                        };
+                        supper.Products.Add(portionDto);
+                    }
+
+                    planDto.DailyPlans.Add(new DailyPlanForEditionDto { Day = dp.Day, Breakfast = breakfast, Snap = snap, Lunch = lunch, Dinner = dinner, Supper = supper });
+
+
+                    
+                }
+
+                return planDto;
             }
             else
                 throw new ServiceException(ErrorCodes.InvalidId, $"Patient with id:{id} doesn't exist");

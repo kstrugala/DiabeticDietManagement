@@ -22,7 +22,7 @@ namespace DiabeticDietManagement.Infrastructure.Services
         Task RemoveAsync(string email);
 
         Task<MealPlanDto> GetMealPlanAsync(Guid id);
-        Task<MealPlan> GetMealPlanForEditionAsync(Guid id);
+        Task<MealPlanForEditionDto> GetMealPlanForEditionAsync(Guid id);
 
         Task UpdateMealPlanAsync(UpdateRecommendedMealPlan command);
 

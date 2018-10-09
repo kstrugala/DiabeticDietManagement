@@ -7,11 +7,12 @@ using DiabeticDietManagement.Infrastructure.Commands;
 using DiabeticDietManagement.Infrastructure.Commands.Patients;
 using DiabeticDietManagement.Infrastructure.Commands.RecommendedMealPlan;
 using DiabeticDietManagement.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiabeticDietManagement.Api.Controllers
 {
-
+    [Authorize(Policy = "NotPatient")]
     [Route("api/patients")]
     public class PatientsController : ApiControllerBase
     {

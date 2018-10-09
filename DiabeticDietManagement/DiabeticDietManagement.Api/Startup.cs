@@ -41,9 +41,12 @@ namespace DiabeticDietManagement.Api
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("admin", p => p.RequireRole("admin"));
-                options.AddPolicy("doctor", p => p.RequireRole("doctor"));
-                options.AddPolicy("patient", p => p.RequireRole("patient"));
+                options.AddPolicy("Admin", p => p.RequireRole("admin"));
+                options.AddPolicy("Doctor", p => p.RequireRole("Doctor"));
+                options.AddPolicy("Patient", p => p.RequireRole("Patient"));
+                options.AddPolicy("Receptionist", p => p.RequireRole("Receptionist"));
+                options.AddPolicy("NotPatient", p => p.RequireRole("Doctor", "Receptionist", "admin"));
+
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>

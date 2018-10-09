@@ -6,10 +6,12 @@ using DiabeticDietManagement.Core.Queries;
 using DiabeticDietManagement.Infrastructure.Commands;
 using DiabeticDietManagement.Infrastructure.Commands.Receptionists;
 using DiabeticDietManagement.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiabeticDietManagement.Api.Controllers
 {
+    [Authorize(Policy = "admin")]
     [Route("api/receptionists")]
     public class ReceptionistsController : ApiControllerBase
     {

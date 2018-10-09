@@ -8,10 +8,12 @@ using DiabeticDietManagement.Infrastructure.Commands;
 using DiabeticDietManagement.Infrastructure.Commands.Doctors;
 using DiabeticDietManagement.Infrastructure.DTO;
 using DiabeticDietManagement.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiabeticDietManagement.Api.Controllers
 {
+    [Authorize(Policy = "admin")]
     [Route("api/doctors")]
     public class DoctorsController : ApiControllerBase
     {

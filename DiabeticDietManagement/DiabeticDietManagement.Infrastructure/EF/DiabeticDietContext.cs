@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DiabeticDietManagement.Infrastructure.EF
 {
@@ -16,8 +17,7 @@ namespace DiabeticDietManagement.Infrastructure.EF
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Receptionist> Receptionists { get; set; }
         public DbSet<Patient> Patients { get; set; }
-
-
+        public DbSet<DietaryCompliance> DietaryCompliances { get; set; }
 
         public DiabeticDietContext(DbContextOptions<DiabeticDietContext> options, SqlSettings settings)
         {
@@ -59,6 +59,9 @@ namespace DiabeticDietManagement.Infrastructure.EF
 
             var patientBuilder = modelBuilder.Entity<Patient>();
             patientBuilder.HasKey(x => x.UserId);
+
+            var dietaryComplianceBuilder = modelBuilder.Entity<DietaryCompliance>();
+            dietaryComplianceBuilder.HasKey(x => x.Id);
 
             //var mealPlanBuilder = modelBuilder.Entity<MealPlan>();
             //mealPlanBuilder.HasKey(x => x.Id);

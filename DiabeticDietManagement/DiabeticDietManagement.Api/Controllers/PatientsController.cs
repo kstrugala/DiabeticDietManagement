@@ -17,9 +17,12 @@ namespace DiabeticDietManagement.Api.Controllers
     public class PatientsController : ApiControllerBase
     {
         private readonly IPatientService _patientService;
-        public PatientsController(ICommandDispatcher commandDispatcher, IPatientService patientService) : base(commandDispatcher)
+        private readonly IDietaryComplianceService _dietaryComplianceService;
+
+        public PatientsController(ICommandDispatcher commandDispatcher, IPatientService patientService, IDietaryComplianceService dietaryComplianceService) : base(commandDispatcher)
         {
             _patientService = patientService;
+            _dietaryComplianceService = dietaryComplianceService;
         }
 
         [HttpGet("{id}", Name = "GetPatientById")]
@@ -93,7 +96,7 @@ namespace DiabeticDietManagement.Api.Controllers
         }
 
 
-        //Meal plan
+        // Meal plan
         [HttpGet("{id}/recommendedmealplan")]
         public async Task<IActionResult> GetRecommendedMealPlan(Guid id, [FromQuery] bool versionForEdition = false)
         {
@@ -119,5 +122,12 @@ namespace DiabeticDietManagement.Api.Controllers
             return NoContent();
         }
 
+        // Dietary Compliance
+        [HttpGet("{id}/dietarycompliance")]
+        public async Task<IActionResult> GetDietaryCompliance(Guid id)
+        {
+            var dc = await _dietaryComplianceService.GetPatientDietaryComplianceAsync(id);
+            return Json(dc);
+        }
     }
 }

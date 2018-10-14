@@ -6,3 +6,4 @@ D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDiet
 D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\obj\Debug\netcoreapp2.1\DiabeticDietManagement.Core.AssemblyInfo.cs
 D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\obj\Debug\netcoreapp2.1\DiabeticDietManagement.Core.dll
 D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\obj\Debug\netcoreapp2.1\DiabeticDietManagement.Core.pdb
+D:\Politechnika\_Praca dyplomowa\SourceFiles\DiabeticDietManagement\DiabeticDietManagement\DiabeticDietManagement.Core\obj\Debug\netcoreapp2.1\DiabeticDietManagement.Core.csprojAssemblyReference.cache

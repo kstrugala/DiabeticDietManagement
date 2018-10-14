@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DiabeticDietManagement.Core.Domain;
 using DiabeticDietManagement.Infrastructure.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,8 +25,9 @@ namespace DiabeticDietManagement.Infrastructure.Mapper
 
                cfg.CreateMap<Product, ProductDto>();
 
-               cfg.CreateMap<DietaryCompliance, DietaryComplianceDto>();
-
+               cfg.CreateMap<DietaryCompliance, DietaryComplianceDto>()
+                .ForMember(dest => dest.EatenProducts, opts => opts.MapFrom(src => JsonConvert.DeserializeObject(src.EatenProducts)));
+                 
            })
            .CreateMapper();
     }

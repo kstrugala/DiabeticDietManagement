@@ -8,6 +8,7 @@ using DiabeticDietManagement.Core.Repositories;
 using DiabeticDietManagement.Infrastructure.Commands.DietaryCompliance;
 using DiabeticDietManagement.Infrastructure.DTO;
 using DiabeticDietManagement.Infrastructure.Exceptions;
+using Newtonsoft.Json;
 
 namespace DiabeticDietManagement.Infrastructure.Services
 {
@@ -31,7 +32,11 @@ namespace DiabeticDietManagement.Infrastructure.Services
 
         public async Task AddPatientDietaryComplianceAsync(AddDietaryCompliance command)
         {
-            await _repository.AddAsync(new DietaryCompliance(command.PatientId, command.WasComplied, command.MealType, command.EatenProducts));
+            var dc = await _repository.GetAsync(command.PatientId, DateTime.UtcNow, command.MealType);
+            if (dc == null)
+            {
+                await _repository.AddAsync(new DietaryCompliance(command.PatientId, command.WasComplied, command.MealType, JsonConvert.SerializeObject(command.EatenProducts)));
+            }
         }
 
         public async Task RemovePatientDietaryComplianceAsync(Guid patientId)

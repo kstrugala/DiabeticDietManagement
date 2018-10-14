@@ -1,4 +1,5 @@
 ﻿using DiabeticDietManagement.Core.Domain;
+using DiabeticDietManagement.Core.Domain.Enums;
 using DiabeticDietManagement.Core.Repositories;
 using DiabeticDietManagement.Infrastructure.EF;
 using Microsoft.EntityFrameworkCore;
@@ -55,5 +56,9 @@ namespace DiabeticDietManagement.Infrastructure.Repositories
 
         public async Task<DietaryCompliance> GetOneAsync(Guid id)
            => await _context.DietaryCompliances.SingleOrDefaultAsync(x => x.Id == id);
+
+        public async Task<DietaryCompliance> GetAsync(Guid patientId, DateTime date, MealType mealType)
+            => await _context.DietaryCompliances.SingleOrDefaultAsync(x => x.PatientId == patientId && x.MealType == mealType && x.Date.Date.Equals(date.Date));
+                           
     }
 }

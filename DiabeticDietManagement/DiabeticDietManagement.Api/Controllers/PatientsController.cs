@@ -123,11 +123,19 @@ namespace DiabeticDietManagement.Api.Controllers
         }
 
         // Dietary Compliance
+        //[HttpGet("{id}/dietarycompliance")]
+        //public async Task<IActionResult> GetDietaryCompliance(Guid id)
+        //{
+        //    var dc = await _dietaryComplianceService.GetPatientDietaryComplianceAsync(id);
+        //    return Json(dc);
+        //}
+
         [HttpGet("{id}/dietarycompliance")]
-        public async Task<IActionResult> GetDietaryCompliance(Guid id)
+        public async Task<IActionResult> GetDietaryCompliance(Guid id, [FromQuery] DietaryComplianceQuery query)
         {
-            var dc = await _dietaryComplianceService.GetPatientDietaryComplianceAsync(id);
+            var dc = await _dietaryComplianceService.GetPatientDietaryCompliancePagedAsync(id, query);
             return Json(dc);
         }
+
     }
 }

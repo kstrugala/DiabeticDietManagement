@@ -1,5 +1,7 @@
 ﻿using DiabeticDietManagement.Core.Domain;
 using DiabeticDietManagement.Core.Domain.Enums;
+using DiabeticDietManagement.Core.Helpers;
+using DiabeticDietManagement.Core.Queries;
 using DiabeticDietManagement.Core.Repositories;
 using DiabeticDietManagement.Infrastructure.EF;
 using Microsoft.EntityFrameworkCore;
@@ -23,11 +25,12 @@ namespace DiabeticDietManagement.Infrastructure.Repositories
         public async Task<IEnumerable<DietaryCompliance>> GetAsync(Guid patientId)
             => await _context.DietaryCompliances
                            .Where(x => x.PatientId == patientId)
+                           .OrderByDescending(y => y.Date)
                            .ToListAsync();
 
 
         public async Task AddAsync(DietaryCompliance dietaryCompliance)
-        { 
+        {
             await _context.DietaryCompliances.AddAsync(dietaryCompliance);
             await _context.SaveChangesAsync();
         }
@@ -37,7 +40,7 @@ namespace DiabeticDietManagement.Infrastructure.Repositories
             _context.Remove(d);
             await _context.SaveChangesAsync();
         }
-        
+
         public async Task UpdateAsync(DietaryCompliance dietaryCompliance)
         {
             _context.DietaryCompliances.Update(dietaryCompliance);
@@ -59,6 +62,35 @@ namespace DiabeticDietManagement.Infrastructure.Repositories
 
         public async Task<DietaryCompliance> GetAsync(Guid patientId, DateTime date, MealType mealType)
             => await _context.DietaryCompliances.SingleOrDefaultAsync(x => x.PatientId == patientId && x.MealType == mealType && x.Date.Date.Equals(date.Date));
-                           
+
+        public async Task<PagedResult<DietaryCompliance>> GetPagedAsync(Guid patientId, DietaryComplianceQuery query)
+        {
+            var page = query.Page;
+            var pageSize = query.PageSize;
+
+            // Filter
+            var linqQuery = _context.DietaryCompliances
+                           .Where(x => x.PatientId == patientId);
+
+
+            var count = await linqQuery.CountAsync();
+
+            var totalPages = (int)Math.Ceiling(count / (double)pageSize);
+
+            if (page < 1) page = 1;
+
+            if (totalPages == 0) totalPages = 1;
+
+            if (page > totalPages) page = totalPages;
+
+
+            var results = await linqQuery
+                                    .Skip((page - 1) * pageSize)
+                                    .Take(pageSize)
+                                    .OrderByDescending(y => y.Date)
+                                    .ToListAsync();
+
+            return new PagedResult<DietaryCompliance>(results, count, page, pageSize, totalPages);
+        }
     }
 }

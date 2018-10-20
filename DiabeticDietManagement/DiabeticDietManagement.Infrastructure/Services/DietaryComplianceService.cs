@@ -4,6 +4,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using DiabeticDietManagement.Core.Domain;
+using DiabeticDietManagement.Core.Helpers;
+using DiabeticDietManagement.Core.Queries;
 using DiabeticDietManagement.Core.Repositories;
 using DiabeticDietManagement.Infrastructure.Commands.DietaryCompliance;
 using DiabeticDietManagement.Infrastructure.DTO;
@@ -42,6 +44,20 @@ namespace DiabeticDietManagement.Infrastructure.Services
         public async Task RemovePatientDietaryComplianceAsync(Guid patientId)
         {
             await _repository.RemovePatientDietaryComplianceAsync(patientId);
+        }
+
+        public async Task<PagedResult<DietaryComplianceDto>> GetPatientDietaryCompliancePagedAsync(Guid patientId, DietaryComplianceQuery query)
+        {
+            var repositoryResults = await _repository.GetPagedAsync(patientId, query);
+
+            var result = _mapper.Map<IEnumerable<DietaryCompliance>, IEnumerable<DietaryComplianceDto>>(repositoryResults.Results);
+
+          
+
+            return new PagedResult<DietaryComplianceDto>(result, repositoryResults.Pagination.TotalCount,
+                                              repositoryResults.Pagination.CurrentPage, repositoryResults.Pagination.PageSize,
+                                              repositoryResults.Pagination.TotalPages);
+
         }
     }
 }

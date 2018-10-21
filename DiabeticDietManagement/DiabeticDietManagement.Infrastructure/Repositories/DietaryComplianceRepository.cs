@@ -85,9 +85,9 @@ namespace DiabeticDietManagement.Infrastructure.Repositories
 
 
             var results = await linqQuery
+                                    .OrderByDescending(y => y.Date)
                                     .Skip((page - 1) * pageSize)
                                     .Take(pageSize)
-                                    .OrderByDescending(y => y.Date)
                                     .ToListAsync();
 
             return new PagedResult<DietaryCompliance>(results, count, page, pageSize, totalPages);

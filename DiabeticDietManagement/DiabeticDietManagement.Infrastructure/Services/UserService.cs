@@ -89,7 +89,8 @@ namespace DiabeticDietManagement.Infrastructure.Services
             {
                 await SetPassword(email, newPassword);
             }
-            throw new ServiceException(ErrorCodes.InvalidCredentials, "Invalid credentials");
+            else
+                throw new ServiceException(ErrorCodes.InvalidCredentials, "Invalid credentials");
         }
 
         public async Task ChangeEmail(string oldEmail, string newEmail)

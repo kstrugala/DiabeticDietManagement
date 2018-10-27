@@ -61,5 +61,19 @@ namespace DiabeticDietManagement.Api.Controllers
             return NoContent();
         }
 
+        [HttpPatch]
+        public async Task<IActionResult> CreateProducts([FromBody] IEnumerable<CreateProduct> commands)
+        {
+
+            foreach (var command in commands)
+            {
+                command.Id = Guid.NewGuid();
+                await CommandDispatcher.DispatchAsync<CreateProduct>(command);
+
+            }
+
+            return Ok();
+
+        }
     }
 }

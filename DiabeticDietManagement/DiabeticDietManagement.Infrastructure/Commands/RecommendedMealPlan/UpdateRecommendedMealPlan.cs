@@ -10,7 +10,7 @@ namespace DiabeticDietManagement.Infrastructure.Commands.RecommendedMealPlan
         public Guid Id { get; set; }
         public string Name { get; set; }
 
-        public ISet<DailyMealPlanForSave> DailyPlans { get; set; }
+        public ISet<DailyMealPlan> DailyPlans { get; set; }
 
     }
 }
